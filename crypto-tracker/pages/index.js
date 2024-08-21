@@ -1,29 +1,85 @@
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
-import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, Title } from 'chart.js';
-import 'tailwindcss/tailwind.css';
+import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, Title, PointElement } from 'chart.js';
 
-// Register ChartJS components
-ChartJS.register(LineElement, CategoryScale, LinearScale, Title);
+// Register Chart.js components
+ChartJS.register(LineElement, CategoryScale, LinearScale, Title, PointElement);
 
-// Tailwind CSS-based components
-const DarkModeToggle = ({ isDarkMode, toggleDarkMode }) => (
-    <button
-        className={`px-4 py-2 text-lg rounded-md transition-colors duration-300 ${
-            isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-800'
-        }`}
-        onClick={toggleDarkMode}
-    >
-        {isDarkMode ? 'Light Mode' : 'Dark Mode'}
-    </button>
-);
+// Inline CSS styles
+const styles = {
+    container: (isDarkMode) => ({
+        minHeight: '100vh',
+        display: 'flex',
+        flexDirection: 'column',
+        alignItems: 'center',
+        padding: '16px',
+        backgroundColor: isDarkMode ? '#1a202c' : '#ffffff',
+        color: isDarkMode ? '#edf2f7' : '#1a202c',
+        transition: 'background-color 0.3s, color 0.3s',
+    }),
+    button: (isDarkMode) => ({
+        padding: '8px 16px',
+        fontSize: '16px',
+        borderRadius: '8px',
+        backgroundColor: isDarkMode ? '#4a5568' : '#e2e8f0',
+        color: isDarkMode ? '#edf2f7' : '#1a202c',
+        border: 'none',
+        cursor: 'pointer',
+        transition: 'background-color 0.3s, color 0.3s',
+    }),
+    input: {
+        padding: '8px',
+        border: '1px solid #d1d5db',
+        borderRadius: '8px',
+        outline: 'none',
+        transition: 'border-color 0.3s, box-shadow 0.3s',
+    },
+    searchButton: {
+        padding: '8px 16px',
+        backgroundColor: '#3182ce',
+        color: '#ffffff',
+        border: 'none',
+        borderRadius: '8px',
+        cursor: 'pointer',
+        transition: 'background-color 0.3s',
+    },
+    cryptoCard: {
+        padding: '16px',
+        border: '1px solid #d1d5db',
+        borderRadius: '8px',
+        marginBottom: '16px',
+        maxWidth: '500px',
+        width: '100%',
+    },
+    chartContainer: {
+        width: '100%',
+        maxWidth: '800px',
+        margin: '0 auto',
+    },
+};
 
+// Component for Dark Mode Toggle
+const DarkModeToggle = ({ isDarkMode, toggleDarkMode }) => {
+    return (
+        <button
+            style={styles.button(isDarkMode)}
+            onClick={toggleDarkMode}
+        >
+            {isDarkMode ? '🔆Light Mode' : '🌙Dark Mode'}
+        </button>
+    );
+};
+
+
+// Component for Search Bar
 const SearchBar = ({ onSearch }) => {
     const [query, setQuery] = useState('');
 
     const handleSearch = () => {
-        onSearch(query);
+        if (query.trim()) {
+            onSearch(query.toLowerCase());
+        }
     };
 
     return (
@@ -33,11 +89,11 @@ const SearchBar = ({ onSearch }) => {
                 placeholder="Search cryptocurrency..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                className="p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+                style={styles.input}
             />
             <button
                 onClick={handleSearch}
-                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
+                style={styles.searchButton}
             >
                 Search
             </button>
@@ -45,20 +101,25 @@ const SearchBar = ({ onSearch }) => {
     );
 };
 
+// Component for Crypto Card
 const CryptoCard = ({ crypto }) => {
     if (!crypto) return null;
 
     return (
-        <div className="p-4 border rounded-md border-gray-300 mb-4">
+        <div style={styles.cryptoCard}>
             <h2 className="text-xl font-semibold">{crypto.name} ({crypto.symbol.toUpperCase()})</h2>
             <p className="mt-2">Price: ${crypto.price.usd}</p>
             <p>Market Cap: ${crypto.market_cap.usd}</p>
             <p>24h Change: {crypto.price.usd_24h_change}%</p>
             <p>Volume: ${crypto.volume.usd}</p>
         </div>
+
     );
 };
 
+
+
+// Component for Price Chart
 const PriceChart = ({ chartData }) => {
     if (!chartData) return null;
 
@@ -73,95 +134,85 @@ const PriceChart = ({ chartData }) => {
         }],
     };
 
-    return (
-        <div className="w-full max-w-4xl mx-auto">
-            <Line data={data} options={{ responsive: true, plugins: { legend: { display: true } } }} />
-        </div>
-    );
-};
-
-export default function Home({ price, chart }) {
-    const [crypto, setCrypto] = useState(null);
-    const [chartData, setChartData] = useState(null);
-    const [isDarkMode, setIsDarkMode] = useState(false);
-
-    useEffect(() => {
-        document.body.className = isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900';
-    }, [isDarkMode]);
-
-    useEffect(() => {
-        if (price && chart) {
-            setCrypto({
-                name: 'bitcoin',
-                symbol: 'bitcoin',
-                price: price['bitcoin'],
-                market_cap: price['bitcoin'],
-                volume: price['bitcoin'],
-            });
-            setChartData(chart);
-        }
-    }, [price, chart]);
-
-    const handleSearch = async (query) => {
-        try {
-            const response = await fetch(`/api/crypto?ids=${query}&vs_currencies=usd`);
-            const data = await response.json();
-            setCrypto({
-                name: query,
-                symbol: query,
-                price: data.price[query],
-                market_cap: data.price[query],
-                volume: data.price[query],
-            });
-            setChartData(data.chart);
-        } catch (error) {
-            console.error('Error fetching data:', error);
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: true
+            }
         }
     };
 
     return (
-        <div className={`min-h-screen flex flex-col items-center p-4 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
+        <div style={styles.chartContainer}>
+            <Line data={data} options={options} />
+        </div>
+    );
+};
+
+export default function Home() {
+    const [crypto, setCrypto] = useState(null);
+    const [chartData, setChartData] = useState(null);
+    const [isDarkMode, setIsDarkMode] = useState(false);
+
+    // Toggle dark mode on client-side only
+    useEffect(() => {
+        document.body.classList.toggle('dark-mode', isDarkMode);
+    }, [isDarkMode]);
+
+    // Handle search and fetch data
+    const handleSearch = async (query) => {
+        try {
+            // Fetch price data
+            const priceResponse = await axios.get('https://api.coingecko.com/api/v3/simple/price', {
+                params: {
+                    ids: query,
+                    vs_currencies: 'usd',
+                    include_market_cap: 'true',
+                    include_24hr_vol: 'true',
+                    include_24hr_change: 'true',
+                },
+            });
+
+            // Check if the cryptocurrency exists
+            if (!priceResponse.data[query]) {
+                setCrypto(null);
+                setChartData(null);
+                alert('Cryptocurrency not found. Please try a different search term.');
+                return;
+            }
+
+            // Fetch chart data
+            const chartResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/${query}/market_chart`, {
+                params: {
+                    vs_currency: 'usd',
+                    days: '7',
+                },
+            });
+
+            // Update state with fetched data
+            setCrypto({
+                name: query,
+                symbol: query,
+                price: priceResponse.data[query],
+                market_cap: priceResponse.data[query],
+                volume: priceResponse.data[query],
+            });
+            setChartData(chartResponse.data);
+        } catch (error) {
+            console.error('Error fetching data:', error.response ? error.response.data : error.message);
+            setCrypto(null);
+            setChartData(null);
+            alert('Error fetching data. Please try again later.');
+        }
+    };
+
+    return (
+        <div style={styles.container(isDarkMode)}>
             <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
             <SearchBar onSearch={handleSearch} />
             <CryptoCard crypto={crypto} />
             <PriceChart chartData={chartData} />
         </div>
     );
-}
-
-export async function getServerSideProps(context) {
-    const { query } = context;
-    const { ids = 'bitcoin', vs_currencies = 'usd', days = '7' } = query;
-
-    try {
-        const priceResponse = await axios.get('https://api.coingecko.com/api/v3/simple/price', {
-            params: {
-                ids,
-                vs_currencies,
-                include_market_cap: 'true',
-                include_24hr_vol: 'true',
-                include_24hr_change: 'true',
-            },
-        });
-
-        const chartResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/${ids}/market_chart`, {
-            params: {
-                vs_currency: vs_currencies,
-                days,
-            },
-        });
-
-        return {
-            props: {
-                price: priceResponse.data,
-                chart: chartResponse.data,
-            },
-        };
-    } catch (error) {
-        return {
-            props: {
-                error: error.message,
-            },
-        };
-    }
 }

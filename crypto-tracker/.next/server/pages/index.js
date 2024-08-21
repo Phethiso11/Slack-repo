@@ -1,90 +1,288 @@
-/*
- * ATTENTION: An "eval-source-map" devtool has been used.
- * This devtool is neither made for production nor for readable output files.
- * It uses "eval()" calls to create a separate source file with attached SourceMaps in the browser devtools.
- * If you are trying to read the output file, select a different devtool (https://webpack.js.org/configuration/devtool/)
- * or disable the default devtool with "devtool: false".
- * If you are looking for production-ready output files, see mode: "production" (https://webpack.js.org/configuration/mode/).
- */
+"use strict";
 (() => {
 var exports = {};
-exports.id = "pages/index";
-exports.ids = ["pages/index"];
+exports.id = 405;
+exports.ids = [405];
 exports.modules = {
 
-/***/ "./pages/index.js":
-/*!************************!*\
-  !*** ./pages/index.js ***!
-  \************************/
-/***/ ((module, __webpack_exports__, __webpack_require__) => {
+/***/ 223:
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
-"use strict";
-eval("__webpack_require__.a(module, async (__webpack_handle_async_dependencies__, __webpack_async_result__) => { try {\n__webpack_require__.r(__webpack_exports__);\n/* harmony export */ __webpack_require__.d(__webpack_exports__, {\n/* harmony export */   \"default\": () => (/* binding */ Home),\n/* harmony export */   \"getServerSideProps\": () => (/* binding */ getServerSideProps)\n/* harmony export */ });\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react/jsx-dev-runtime */ \"react/jsx-dev-runtime\");\n/* harmony import */ var react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__);\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ \"react\");\n/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(react__WEBPACK_IMPORTED_MODULE_1__);\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ \"axios\");\n/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);\n/* harmony import */ var react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react-chartjs-2 */ \"react-chartjs-2\");\n/* harmony import */ var chart_js__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! chart.js */ \"chart.js\");\n/* harmony import */ var tailwindcss_tailwind_css__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! tailwindcss/tailwind.css */ \"./node_modules/tailwindcss/tailwind.css\");\n/* harmony import */ var tailwindcss_tailwind_css__WEBPACK_IMPORTED_MODULE_5___default = /*#__PURE__*/__webpack_require__.n(tailwindcss_tailwind_css__WEBPACK_IMPORTED_MODULE_5__);\nvar __webpack_async_dependencies__ = __webpack_handle_async_dependencies__([react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__, chart_js__WEBPACK_IMPORTED_MODULE_4__]);\n([react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__, chart_js__WEBPACK_IMPORTED_MODULE_4__] = __webpack_async_dependencies__.then ? (await __webpack_async_dependencies__)() : __webpack_async_dependencies__);\n\n\n\n\n\n\n// Register ChartJS components\nchart_js__WEBPACK_IMPORTED_MODULE_4__.Chart.register(chart_js__WEBPACK_IMPORTED_MODULE_4__.LineElement, chart_js__WEBPACK_IMPORTED_MODULE_4__.CategoryScale, chart_js__WEBPACK_IMPORTED_MODULE_4__.LinearScale, chart_js__WEBPACK_IMPORTED_MODULE_4__.Title);\n// Tailwind CSS-based components\nconst DarkModeToggle = ({ isDarkMode , toggleDarkMode  })=>/*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"button\", {\n        className: `px-4 py-2 text-lg rounded-md transition-colors duration-300 ${isDarkMode ? \"bg-gray-800 text-white\" : \"bg-gray-200 text-gray-800\"}`,\n        onClick: toggleDarkMode,\n        children: isDarkMode ? \"Light Mode\" : \"Dark Mode\"\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n        lineNumber: 12,\n        columnNumber: 5\n    }, undefined);\nconst SearchBar = ({ onSearch  })=>{\n    const { 0: query , 1: setQuery  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(\"\");\n    const handleSearch = ()=>{\n        onSearch(query);\n    };\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        className: \"flex items-center space-x-2 mb-4\",\n        children: [\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"input\", {\n                type: \"text\",\n                placeholder: \"Search cryptocurrency...\",\n                value: query,\n                onChange: (e)=>setQuery(e.target.value),\n                className: \"p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n                lineNumber: 31,\n                columnNumber: 13\n            }, undefined),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"button\", {\n                onClick: handleSearch,\n                className: \"px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors\",\n                children: \"Search\"\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n                lineNumber: 38,\n                columnNumber: 13\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n        lineNumber: 30,\n        columnNumber: 9\n    }, undefined);\n};\nconst CryptoCard = ({ crypto  })=>{\n    if (!crypto) return null;\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        className: \"p-4 border rounded-md border-gray-300 mb-4\",\n        children: [\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"h2\", {\n                className: \"text-xl font-semibold\",\n                children: [\n                    crypto.name,\n                    \" (\",\n                    crypto.symbol.toUpperCase(),\n                    \")\"\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n                lineNumber: 53,\n                columnNumber: 13\n            }, undefined),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"p\", {\n                className: \"mt-2\",\n                children: [\n                    \"Price: $\",\n                    crypto.price.usd\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n                lineNumber: 54,\n                columnNumber: 13\n            }, undefined),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"p\", {\n                children: [\n                    \"Market Cap: $\",\n                    crypto.market_cap.usd\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n                lineNumber: 55,\n                columnNumber: 13\n            }, undefined),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"p\", {\n                children: [\n                    \"24h Change: \",\n                    crypto.price.usd_24h_change,\n                    \"%\"\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n                lineNumber: 56,\n                columnNumber: 13\n            }, undefined),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"p\", {\n                children: [\n                    \"Volume: $\",\n                    crypto.volume.usd\n                ]\n            }, void 0, true, {\n                fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n                lineNumber: 57,\n                columnNumber: 13\n            }, undefined)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n        lineNumber: 52,\n        columnNumber: 9\n    }, undefined);\n};\nconst PriceChart = ({ chartData  })=>{\n    if (!chartData) return null;\n    const data = {\n        labels: chartData.prices.map((point)=>new Date(point[0]).toLocaleDateString()),\n        datasets: [\n            {\n                label: \"Price\",\n                data: chartData.prices.map((point)=>point[1]),\n                borderColor: \"rgb(75,192,192)\",\n                backgroundColor: \"rgba(75,192,192,0.2)\",\n                fill: true\n            }\n        ]\n    };\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        className: \"w-full max-w-4xl mx-auto\",\n        children: /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(react_chartjs_2__WEBPACK_IMPORTED_MODULE_3__.Line, {\n            data: data,\n            options: {\n                responsive: true,\n                plugins: {\n                    legend: {\n                        display: true\n                    }\n                }\n            }\n        }, void 0, false, {\n            fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n            lineNumber: 78,\n            columnNumber: 13\n        }, undefined)\n    }, void 0, false, {\n        fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n        lineNumber: 77,\n        columnNumber: 9\n    }, undefined);\n};\nfunction Home({ price , chart  }) {\n    const { 0: crypto , 1: setCrypto  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);\n    const { 0: chartData , 1: setChartData  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(null);\n    const { 0: isDarkMode , 1: setIsDarkMode  } = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(false);\n    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{\n        document.body.className = isDarkMode ? \"bg-gray-900 text-white\" : \"bg-white text-gray-900\";\n    }, [\n        isDarkMode\n    ]);\n    (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(()=>{\n        if (price && chart) {\n            setCrypto({\n                name: \"bitcoin\",\n                symbol: \"bitcoin\",\n                price: price[\"bitcoin\"],\n                market_cap: price[\"bitcoin\"],\n                volume: price[\"bitcoin\"]\n            });\n            setChartData(chart);\n        }\n    }, [\n        price,\n        chart\n    ]);\n    const handleSearch = async (query)=>{\n        try {\n            const response = await fetch(`/api/crypto?ids=${query}&vs_currencies=usd`);\n            const data = await response.json();\n            setCrypto({\n                name: query,\n                symbol: query,\n                price: data.price[query],\n                market_cap: data.price[query],\n                volume: data.price[query]\n            });\n            setChartData(data.chart);\n        } catch (error) {\n            console.error(\"Error fetching data:\", error);\n        }\n    };\n    return /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(\"div\", {\n        className: `min-h-screen flex flex-col items-center p-4 ${isDarkMode ? \"bg-gray-900 text-white\" : \"bg-white text-gray-900\"}`,\n        children: [\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(DarkModeToggle, {\n                isDarkMode: isDarkMode,\n                toggleDarkMode: ()=>setIsDarkMode(!isDarkMode)\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n                lineNumber: 124,\n                columnNumber: 13\n            }, this),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(SearchBar, {\n                onSearch: handleSearch\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n                lineNumber: 125,\n                columnNumber: 13\n            }, this),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(CryptoCard, {\n                crypto: crypto\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n                lineNumber: 126,\n                columnNumber: 13\n            }, this),\n            /*#__PURE__*/ (0,react_jsx_dev_runtime__WEBPACK_IMPORTED_MODULE_0__.jsxDEV)(PriceChart, {\n                chartData: chartData\n            }, void 0, false, {\n                fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n                lineNumber: 127,\n                columnNumber: 13\n            }, this)\n        ]\n    }, void 0, true, {\n        fileName: \"C:\\\\Users\\\\Admin\\\\Documents\\\\Slack-repo\\\\crypto-tracker\\\\pages\\\\index.js\",\n        lineNumber: 123,\n        columnNumber: 9\n    }, this);\n}\nasync function getServerSideProps(context) {\n    const { query  } = context;\n    const { ids =\"bitcoin\" , vs_currencies =\"usd\" , days =\"7\"  } = query;\n    try {\n        const priceResponse = await axios__WEBPACK_IMPORTED_MODULE_2___default().get(\"https://api.coingecko.com/api/v3/simple/price\", {\n            params: {\n                ids,\n                vs_currencies,\n                include_market_cap: \"true\",\n                include_24hr_vol: \"true\",\n                include_24hr_change: \"true\"\n            }\n        });\n        const chartResponse = await axios__WEBPACK_IMPORTED_MODULE_2___default().get(`https://api.coingecko.com/api/v3/coins/${ids}/market_chart`, {\n            params: {\n                vs_currency: vs_currencies,\n                days\n            }\n        });\n        return {\n            props: {\n                price: priceResponse.data,\n                chart: chartResponse.data\n            }\n        };\n    } catch (error) {\n        return {\n            props: {\n                error: error.message\n            }\n        };\n    }\n}\n\n__webpack_async_result__();\n} catch(e) { __webpack_async_result__(e); } });//# sourceURL=[module]\n//# sourceMappingURL=data:application/json;charset=utf-8;base64,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U0FDSixDQUFDO1FBRUYsT0FBTztZQUNIUyxLQUFLLEVBQUU7Z0JBQ0hqRCxLQUFLLEVBQUV5QyxhQUFhLENBQUNsQyxJQUFJO2dCQUN6QmtCLEtBQUssRUFBRXNCLGFBQWEsQ0FBQ3hDLElBQUk7YUFDNUI7U0FDSixDQUFDO0lBQ04sRUFBRSxPQUFPMkIsS0FBSyxFQUFFO1FBQ1osT0FBTztZQUNIZSxLQUFLLEVBQUU7Z0JBQ0hmLEtBQUssRUFBRUEsS0FBSyxDQUFDZ0IsT0FBTzthQUN2QjtTQUNKLENBQUM7SUFDTixDQUFDO0FBQ0wsQ0FBQyIsInNvdXJjZXMiOlsid2VicGFjazovL2NyeXB0by10cmFja2VyLy4vcGFnZXMvaW5kZXguanM/YmVlNyJdLCJzb3VyY2VzQ29udGVudCI6WyJpbXBvcnQgeyB1c2VTdGF0ZSwgdXNlRWZmZWN0IH0gZnJvbSAncmVhY3QnO1xyXG5pbXBvcnQgYXhpb3MgZnJvbSAnYXhpb3MnO1xyXG5pbXBvcnQgeyBMaW5lIH0gZnJvbSAncmVhY3QtY2hhcnRqcy0yJztcclxuaW1wb3J0IHsgQ2hhcnQgYXMgQ2hhcnRKUywgTGluZUVsZW1lbnQsIENhdGVnb3J5U2NhbGUsIExpbmVhclNjYWxlLCBUaXRsZSB9IGZyb20gJ2NoYXJ0LmpzJztcclxuaW1wb3J0ICd0YWlsd2luZGNzcy90YWlsd2luZC5jc3MnO1xyXG5cclxuLy8gUmVnaXN0ZXIgQ2hhcnRKUyBjb21wb25lbnRzXHJcbkNoYXJ0SlMucmVnaXN0ZXIoTGluZUVsZW1lbnQsIENhdGVnb3J5U2NhbGUsIExpbmVhclNjYWxlLCBUaXRsZSk7XHJcblxyXG4vLyBUYWlsd2luZCBDU1MtYmFzZWQgY29tcG9uZW50c1xyXG5jb25zdCBEYXJrTW9kZVRvZ2dsZSA9ICh7IGlzRGFya01vZGUsIHRvZ2dsZURhcmtNb2RlIH0pID0+IChcclxuICAgIDxidXR0b25cclxuICAgICAgICBjbGFzc05hbWU9e2BweC00IHB5LTIgdGV4dC1sZyByb3VuZGVkLW1kIHRyYW5zaXRpb24tY29sb3JzIGR1cmF0aW9uLTMwMCAke1xyXG4gICAgICAgICAgICBpc0RhcmtNb2RlID8gJ2JnLWdyYXktODAwIHRleHQtd2hpdGUnIDogJ2JnLWdyYXktMjAwIHRleHQtZ3JheS04MDAnXHJcbiAgICAgICAgfWB9XHJcbiAgICAgICAgb25DbGljaz17dG9nZ2xlRGFya01vZGV9XHJcbiAgICA+XHJcbiAgICAgICAge2lzRGFya01vZGUgPyAnTGlnaHQgTW9kZScgOiAnRGFyayBNb2RlJ31cclxuICAgIDwvYnV0dG9uPlxyXG4pO1xyXG5cclxuY29uc3QgU2VhcmNoQmFyID0gKHsgb25TZWFyY2ggfSkgPT4ge1xyXG4gICAgY29uc3QgW3F1ZXJ5LCBzZXRRdWVyeV0gPSB1c2VTdGF0ZSgnJyk7XHJcblxyXG4gICAgY29uc3QgaGFuZGxlU2VhcmNoID0gKCkgPT4ge1xyXG4gICAgICAgIG9uU2VhcmNoKHF1ZXJ5KTtcclxuICAgIH07XHJcblxyXG4gICAgcmV0dXJuIChcclxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cImZsZXggaXRlbXMtY2VudGVyIHNwYWNlLXgtMiBtYi00XCI+XHJcbiAgICAgICAgICAgIDxpbnB1dFxyXG4gICAgICAgICAgICAgICAgdHlwZT1cInRleHRcIlxyXG4gICAgICAgICAgICAgICAgcGxhY2Vob2xkZXI9XCJTZWFyY2ggY3J5cHRvY3VycmVuY3kuLi5cIlxyXG4gICAgICAgICAgICAgICAgdmFsdWU9e3F1ZXJ5fVxyXG4gICAgICAgICAgICAgICAgb25DaGFuZ2U9eyhlKSA9PiBzZXRRdWVyeShlLnRhcmdldC52YWx1ZSl9XHJcbiAgICAgICAgICAgICAgICBjbGFzc05hbWU9XCJwLTIgYm9yZGVyIHJvdW5kZWQtbWQgYm9yZGVyLWdyYXktMzAwIGZvY3VzOm91dGxpbmUtbm9uZSBmb2N1czpyaW5nLTIgZm9jdXM6cmluZy1pbmRpZ28tNTAwXCJcclxuICAgICAgICAgICAgLz5cclxuICAgICAgICAgICAgPGJ1dHRvblxyXG4gICAgICAgICAgICAgICAgb25DbGljaz17aGFuZGxlU2VhcmNofVxyXG4gICAgICAgICAgICAgICAgY2xhc3NOYW1lPVwicHgtNCBweS0yIGJnLWJsdWUtNTAwIHRleHQtd2hpdGUgcm91bmRlZC1tZCBob3ZlcjpiZy1ibHVlLTYwMCB0cmFuc2l0aW9uLWNvbG9yc1wiXHJcbiAgICAgICAgICAgID5cclxuICAgICAgICAgICAgICAgIFNlYXJjaFxyXG4gICAgICAgICAgICA8L2J1dHRvbj5cclxuICAgICAgICA8L2Rpdj5cclxuICAgICk7XHJcbn07XHJcblxyXG5jb25zdCBDcnlwdG9DYXJkID0gKHsgY3J5cHRvIH0pID0+IHtcclxuICAgIGlmICghY3J5cHRvKSByZXR1cm4gbnVsbDtcclxuXHJcbiAgICByZXR1cm4gKFxyXG4gICAgICAgIDxkaXYgY2xhc3NOYW1lPVwicC00IGJvcmRlciByb3VuZGVkLW1kIGJvcmRlci1ncmF5LTMwMCBtYi00XCI+XHJcbiAgICAgICAgICAgIDxoMiBjbGFzc05hbWU9XCJ0ZXh0LXhsIGZvbnQtc2VtaWJvbGRcIj57Y3J5cHRvLm5hbWV9ICh7Y3J5cHRvLnN5bWJvbC50b1VwcGVyQ2FzZSgpfSk8L2gyPlxyXG4gICAgICAgICAgICA8cCBjbGFzc05hbWU9XCJtdC0yXCI+UHJpY2U6ICR7Y3J5cHRvLnByaWNlLnVzZH08L3A+XHJcbiAgICAgICAgICAgIDxwPk1hcmtldCBDYXA6ICR7Y3J5cHRvLm1hcmtldF9jYXAudXNkfTwvcD5cclxuICAgICAgICAgICAgPHA+MjRoIENoYW5nZToge2NyeXB0by5wcmljZS51c2RfMjRoX2NoYW5nZX0lPC9wPlxyXG4gICAgICAgICAgICA8cD5Wb2x1bWU6ICR7Y3J5cHRvLnZvbHVtZS51c2R9PC9wPlxyXG4gICAgICAgIDwvZGl2PlxyXG4gICAgKTtcclxufTtcclxuXHJcbmNvbnN0IFByaWNlQ2hhcnQgPSAoeyBjaGFydERhdGEgfSkgPT4ge1xyXG4gICAgaWYgKCFjaGFydERhdGEpIHJldHVybiBudWxsO1xyXG5cclxuICAgIGNvbnN0IGRhdGEgPSB7XHJcbiAgICAgICAgbGFiZWxzOiBjaGFydERhdGEucHJpY2VzLm1hcChwb2ludCA9PiBuZXcgRGF0ZShwb2ludFswXSkudG9Mb2NhbGVEYXRlU3RyaW5nKCkpLFxyXG4gICAgICAgIGRhdGFzZXRzOiBbe1xyXG4gICAgICAgICAgICBsYWJlbDogJ1ByaWNlJyxcclxuICAgICAgICAgICAgZGF0YTogY2hhcnREYXRhLnByaWNlcy5tYXAocG9pbnQgPT4gcG9pbnRbMV0pLFxyXG4gICAgICAgICAgICBib3JkZXJDb2xvcjogJ3JnYig3NSwxOTIsMTkyKScsXHJcbiAgICAgICAgICAgIGJhY2tncm91bmRDb2xvcjogJ3JnYmEoNzUsMTkyLDE5MiwwLjIpJyxcclxuICAgICAgICAgICAgZmlsbDogdHJ1ZSxcclxuICAgICAgICB9XSxcclxuICAgIH07XHJcblxyXG4gICAgcmV0dXJuIChcclxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT1cInctZnVsbCBtYXgtdy00eGwgbXgtYXV0b1wiPlxyXG4gICAgICAgICAgICA8TGluZSBkYXRhPXtkYXRhfSBvcHRpb25zPXt7IHJlc3BvbnNpdmU6IHRydWUsIHBsdWdpbnM6IHsgbGVnZW5kOiB7IGRpc3BsYXk6IHRydWUgfSB9IH19IC8+XHJcbiAgICAgICAgPC9kaXY+XHJcbiAgICApO1xyXG59O1xyXG5cclxuZXhwb3J0IGRlZmF1bHQgZnVuY3Rpb24gSG9tZSh7IHByaWNlLCBjaGFydCB9KSB7XHJcbiAgICBjb25zdCBbY3J5cHRvLCBzZXRDcnlwdG9dID0gdXNlU3RhdGUobnVsbCk7XHJcbiAgICBjb25zdCBbY2hhcnREYXRhLCBzZXRDaGFydERhdGFdID0gdXNlU3RhdGUobnVsbCk7XHJcbiAgICBjb25zdCBbaXNEYXJrTW9kZSwgc2V0SXNEYXJrTW9kZV0gPSB1c2VTdGF0ZShmYWxzZSk7XHJcblxyXG4gICAgdXNlRWZmZWN0KCgpID0+IHtcclxuICAgICAgICBkb2N1bWVudC5ib2R5LmNsYXNzTmFtZSA9IGlzRGFya01vZGUgPyAnYmctZ3JheS05MDAgdGV4dC13aGl0ZScgOiAnYmctd2hpdGUgdGV4dC1ncmF5LTkwMCc7XHJcbiAgICB9LCBbaXNEYXJrTW9kZV0pO1xyXG5cclxuICAgIHVzZUVmZmVjdCgoKSA9PiB7XHJcbiAgICAgICAgaWYgKHByaWNlICYmIGNoYXJ0KSB7XHJcbiAgICAgICAgICAgIHNldENyeXB0byh7XHJcbiAgICAgICAgICAgICAgICBuYW1lOiAnYml0Y29pbicsXHJcbiAgICAgICAgICAgICAgICBzeW1ib2w6ICdiaXRjb2luJyxcclxuICAgICAgICAgICAgICAgIHByaWNlOiBwcmljZVsnYml0Y29pbiddLFxyXG4gICAgICAgICAgICAgICAgbWFya2V0X2NhcDogcHJpY2VbJ2JpdGNvaW4nXSxcclxuICAgICAgICAgICAgICAgIHZvbHVtZTogcHJpY2VbJ2JpdGNvaW4nXSxcclxuICAgICAgICAgICAgfSk7XHJcbiAgICAgICAgICAgIHNldENoYXJ0RGF0YShjaGFydCk7XHJcbiAgICAgICAgfVxyXG4gICAgfSwgW3ByaWNlLCBjaGFydF0pO1xyXG5cclxuICAgIGNvbnN0IGhhbmRsZVNlYXJjaCA9IGFzeW5jIChxdWVyeSkgPT4ge1xyXG4gICAgICAgIHRyeSB7XHJcbiAgICAgICAgICAgIGNvbnN0IHJlc3BvbnNlID0gYXdhaXQgZmV0Y2goYC9hcGkvY3J5cHRvP2lkcz0ke3F1ZXJ5fSZ2c19jdXJyZW5jaWVzPXVzZGApO1xyXG4gICAgICAgICAgICBjb25zdCBkYXRhID0gYXdhaXQgcmVzcG9uc2UuanNvbigpO1xyXG4gICAgICAgICAgICBzZXRDcnlwdG8oe1xyXG4gICAgICAgICAgICAgICAgbmFtZTogcXVlcnksXHJcbiAgICAgICAgICAgICAgICBzeW1ib2w6IHF1ZXJ5LFxyXG4gICAgICAgICAgICAgICAgcHJpY2U6IGRhdGEucHJpY2VbcXVlcnldLFxyXG4gICAgICAgICAgICAgICAgbWFya2V0X2NhcDogZGF0YS5wcmljZVtxdWVyeV0sXHJcbiAgICAgICAgICAgICAgICB2b2x1bWU6IGRhdGEucHJpY2VbcXVlcnldLFxyXG4gICAgICAgICAgICB9KTtcclxuICAgICAgICAgICAgc2V0Q2hhcnREYXRhKGRhdGEuY2hhcnQpO1xyXG4gICAgICAgIH0gY2F0Y2ggKGVycm9yKSB7XHJcbiAgICAgICAgICAgIGNvbnNvbGUuZXJyb3IoJ0Vycm9yIGZldGNoaW5nIGRhdGE6JywgZXJyb3IpO1xyXG4gICAgICAgIH1cclxuICAgIH07XHJcblxyXG4gICAgcmV0dXJuIChcclxuICAgICAgICA8ZGl2IGNsYXNzTmFtZT17YG1pbi1oLXNjcmVlbiBmbGV4IGZsZXgtY29sIGl0ZW1zLWNlbnRlciBwLTQgJHtpc0RhcmtNb2RlID8gJ2JnLWdyYXktOTAwIHRleHQtd2hpdGUnIDogJ2JnLXdoaXRlIHRleHQtZ3JheS05MDAnfWB9PlxyXG4gICAgICAgICAgICA8RGFya01vZGVUb2dnbGUgaXNEYXJrTW9kZT17aXNEYXJrTW9kZX0gdG9nZ2xlRGFya01vZGU9eygpID0+IHNldElzRGFya01vZGUoIWlzRGFya01vZGUpfSAvPlxyXG4gICAgICAgICAgICA8U2VhcmNoQmFyIG9uU2VhcmNoPXtoYW5kbGVTZWFyY2h9IC8+XHJcbiAgICAgICAgICAgIDxDcnlwdG9DYXJkIGNyeXB0bz17Y3J5cHRvfSAvPlxyXG4gICAgICAgICAgICA8UHJpY2VDaGFydCBjaGFydERhdGE9e2NoYXJ0RGF0YX0gLz5cclxuICAgICAgICA8L2Rpdj5cclxuICAgICk7XHJcbn1cclxuXHJcbmV4cG9ydCBhc3luYyBmdW5jdGlvbiBnZXRTZXJ2ZXJTaWRlUHJvcHMoY29udGV4dCkge1xyXG4gICAgY29uc3QgeyBxdWVyeSB9ID0gY29udGV4dDtcclxuICAgIGNvbnN0IHsgaWRzID0gJ2JpdGNvaW4nLCB2c19jdXJyZW5jaWVzID0gJ3VzZCcsIGRheXMgPSAnNycgfSA9IHF1ZXJ5O1xyXG5cclxuICAgIHRyeSB7XHJcbiAgICAgICAgY29uc3QgcHJpY2VSZXNwb25zZSA9IGF3YWl0IGF4aW9zLmdldCgnaHR0cHM6Ly9hcGkuY29pbmdlY2tvLmNvbS9hcGkvdjMvc2ltcGxlL3ByaWNlJywge1xyXG4gICAgICAgICAgICBwYXJhbXM6IHtcclxuICAgICAgICAgICAgICAgIGlkcyxcclxuICAgICAgICAgICAgICAgIHZzX2N1cnJlbmNpZXMsXHJcbiAgICAgICAgICAgICAgICBpbmNsdWRlX21hcmtldF9jYXA6ICd0cnVlJyxcclxuICAgICAgICAgICAgICAgIGluY2x1ZGVfMjRocl92b2w6ICd0cnVlJyxcclxuICAgICAgICAgICAgICAgIGluY2x1ZGVfMjRocl9jaGFuZ2U6ICd0cnVlJyxcclxuICAgICAgICAgICAgfSxcclxuICAgICAgICB9KTtcclxuXHJcbiAgICAgICAgY29uc3QgY2hhcnRSZXNwb25zZSA9IGF3YWl0IGF4aW9zLmdldChgaHR0cHM6Ly9hcGkuY29pbmdlY2tvLmNvbS9hcGkvdjMvY29pbnMvJHtpZHN9L21hcmtldF9jaGFydGAsIHtcclxuICAgICAgICAgICAgcGFyYW1zOiB7XHJcbiAgICAgICAgICAgICAgICB2c19jdXJyZW5jeTogdnNfY3VycmVuY2llcyxcclxuICAgICAgICAgICAgICAgIGRheXMsXHJcbiAgICAgICAgICAgIH0sXHJcbiAgICAgICAgfSk7XHJcblxyXG4gICAgICAgIHJldHVybiB7XHJcbiAgICAgICAgICAgIHByb3BzOiB7XHJcbiAgICAgICAgICAgICAgICBwcmljZTogcHJpY2VSZXNwb25zZS5kYXRhLFxyXG4gICAgICAgICAgICAgICAgY2hhcnQ6IGNoYXJ0UmVzcG9uc2UuZGF0YSxcclxuICAgICAgICAgICAgfSxcclxuICAgICAgICB9O1xyXG4gICAgfSBjYXRjaCAoZXJyb3IpIHtcclxuICAgICAgICByZXR1cm4ge1xyXG4gICAgICAgICAgICBwcm9wczoge1xyXG4gICAgICAgICAgICAgICAgZXJyb3I6IGVycm9yLm1lc3NhZ2UsXHJcbiAgICAgICAgICAgIH0sXHJcbiAgICAgICAgfTtcclxuICAgIH1cclxufVxyXG4iXSwibmFtZXMiOlsidXNlU3RhdGUiLCJ1c2VFZmZlY3QiLCJheGlvcyIsIkxpbmUiLCJDaGFydCIsIkNoYXJ0SlMiLCJMaW5lRWxlbWVudCIsIkNhdGVnb3J5U2NhbGUiLCJMaW5lYXJTY2FsZSIsIlRpdGxlIiwicmVnaXN0ZXIiLCJEYXJrTW9kZVRvZ2dsZSIsImlzRGFya01vZGUiLCJ0b2dnbGVEYXJrTW9kZSIsImJ1dHRvbiIsImNsYXNzTmFtZSIsIm9uQ2xpY2siLCJTZWFyY2hCYXIiLCJvblNlYXJjaCIsInF1ZXJ5Iiwic2V0UXVlcnkiLCJoYW5kbGVTZWFyY2giLCJkaXYiLCJpbnB1dCIsInR5cGUiLCJwbGFjZWhvbGRlciIsInZhbHVlIiwib25DaGFuZ2UiLCJlIiwidGFyZ2V0IiwiQ3J5cHRvQ2FyZCIsImNyeXB0byIsImgyIiwibmFtZSIsInN5bWJvbCIsInRvVXBwZXJDYXNlIiwicCIsInByaWNlIiwidXNkIiwibWFya2V0X2NhcCIsInVzZF8yNGhfY2hhbmdlIiwidm9sdW1lIiwiUHJpY2VDaGFydCIsImNoYXJ0RGF0YSIsImRhdGEiLCJsYWJlbHMiLCJwcmljZXMiLCJtYXAiLCJwb2ludCIsIkRhdGUiLCJ0b0xvY2FsZURhdGVTdHJpbmciLCJkYXRhc2V0cyIsImxhYmVsIiwiYm9yZGVyQ29sb3IiLCJiYWNrZ3JvdW5kQ29sb3IiLCJmaWxsIiwib3B0aW9ucyIsInJlc3BvbnNpdmUiLCJwbHVnaW5zIiwibGVnZW5kIiwiZGlzcGxheSIsIkhvbWUiLCJjaGFydCIsInNldENyeXB0byIsInNldENoYXJ0RGF0YSIsInNldElzRGFya01vZGUiLCJkb2N1bWVudCIsImJvZHkiLCJyZXNwb25zZSIsImZldGNoIiwianNvbiIsImVycm9yIiwiY29uc29sZSIsImdldFNlcnZlclNpZGVQcm9wcyIsImNvbnRleHQiLCJpZHMiLCJ2c19jdXJyZW5jaWVzIiwiZGF5cyIsInByaWNlUmVzcG9uc2UiLCJnZXQiLCJwYXJhbXMiLCJpbmNsdWRlX21hcmtldF9jYXAiLCJpbmNsdWRlXzI0aHJfdm9sIiwiaW5jbHVkZV8yNGhyX2NoYW5nZSIsImNoYXJ0UmVzcG9uc2UiLCJ2c19jdXJyZW5jeSIsInByb3BzIiwibWVzc2FnZSJdLCJzb3VyY2VSb290IjoiIn0=\n//# sourceURL=webpack-internal:///./pages/index.js\n");
+// ESM COMPAT FLAG
+__webpack_require__.r(__webpack_exports__);
+
+// EXPORTS
+__webpack_require__.d(__webpack_exports__, {
+  "default": () => (/* binding */ Home)
+});
+
+// EXTERNAL MODULE: external "react/jsx-runtime"
+var jsx_runtime_ = __webpack_require__(997);
+// EXTERNAL MODULE: external "react"
+var external_react_ = __webpack_require__(689);
+;// CONCATENATED MODULE: external "axios"
+const external_axios_namespaceObject = require("axios");
+var external_axios_default = /*#__PURE__*/__webpack_require__.n(external_axios_namespaceObject);
+;// CONCATENATED MODULE: external "react-chartjs-2"
+const external_react_chartjs_2_namespaceObject = require("react-chartjs-2");
+;// CONCATENATED MODULE: external "chart.js"
+const external_chart_js_namespaceObject = require("chart.js");
+;// CONCATENATED MODULE: ./pages/index.js
+
+
+
+
+
+// Register Chart.js components
+external_chart_js_namespaceObject.Chart.register(external_chart_js_namespaceObject.LineElement, external_chart_js_namespaceObject.CategoryScale, external_chart_js_namespaceObject.LinearScale, external_chart_js_namespaceObject.Title, external_chart_js_namespaceObject.PointElement);
+// Inline CSS styles
+const styles = {
+    container: (isDarkMode)=>({
+            minHeight: "100vh",
+            display: "flex",
+            flexDirection: "column",
+            alignItems: "center",
+            padding: "16px",
+            backgroundColor: isDarkMode ? "#1a202c" : "#ffffff",
+            color: isDarkMode ? "#edf2f7" : "#1a202c",
+            transition: "background-color 0.3s, color 0.3s"
+        }),
+    button: (isDarkMode)=>({
+            padding: "8px 16px",
+            fontSize: "16px",
+            borderRadius: "8px",
+            backgroundColor: isDarkMode ? "#4a5568" : "#e2e8f0",
+            color: isDarkMode ? "#edf2f7" : "#1a202c",
+            border: "none",
+            cursor: "pointer",
+            transition: "background-color 0.3s, color 0.3s"
+        }),
+    input: {
+        padding: "8px",
+        border: "1px solid #d1d5db",
+        borderRadius: "8px",
+        outline: "none",
+        transition: "border-color 0.3s, box-shadow 0.3s"
+    },
+    searchButton: {
+        padding: "8px 16px",
+        backgroundColor: "#3182ce",
+        color: "#ffffff",
+        border: "none",
+        borderRadius: "8px",
+        cursor: "pointer",
+        transition: "background-color 0.3s"
+    },
+    cryptoCard: {
+        padding: "16px",
+        border: "1px solid #d1d5db",
+        borderRadius: "8px",
+        marginBottom: "16px",
+        maxWidth: "500px",
+        width: "100%"
+    },
+    chartContainer: {
+        width: "100%",
+        maxWidth: "800px",
+        margin: "0 auto"
+    }
+};
+// Component for Dark Mode Toggle
+const DarkModeToggle = ({ isDarkMode , toggleDarkMode  })=>{
+    return /*#__PURE__*/ jsx_runtime_.jsx("button", {
+        style: styles.button(isDarkMode),
+        onClick: toggleDarkMode,
+        children: isDarkMode ? "\uD83D\uDD06Light Mode" : "\uD83C\uDF19Dark Mode"
+    });
+};
+// Component for Search Bar
+const SearchBar = ({ onSearch  })=>{
+    const { 0: query , 1: setQuery  } = (0,external_react_.useState)("");
+    const handleSearch = ()=>{
+        if (query.trim()) {
+            onSearch(query.toLowerCase());
+        }
+    };
+    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+        className: "flex items-center space-x-2 mb-4",
+        children: [
+            /*#__PURE__*/ jsx_runtime_.jsx("input", {
+                type: "text",
+                placeholder: "Search cryptocurrency...",
+                value: query,
+                onChange: (e)=>setQuery(e.target.value),
+                style: styles.input
+            }),
+            /*#__PURE__*/ jsx_runtime_.jsx("button", {
+                onClick: handleSearch,
+                style: styles.searchButton,
+                children: "Search"
+            })
+        ]
+    });
+};
+// Component for Crypto Card
+const CryptoCard = ({ crypto  })=>{
+    if (!crypto) return null;
+    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+        style: styles.cryptoCard,
+        children: [
+            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("h2", {
+                className: "text-xl font-semibold",
+                children: [
+                    crypto.name,
+                    " (",
+                    crypto.symbol.toUpperCase(),
+                    ")"
+                ]
+            }),
+            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("p", {
+                className: "mt-2",
+                children: [
+                    "Price: $",
+                    crypto.price.usd
+                ]
+            }),
+            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("p", {
+                children: [
+                    "Market Cap: $",
+                    crypto.market_cap.usd
+                ]
+            }),
+            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("p", {
+                children: [
+                    "24h Change: ",
+                    crypto.price.usd_24h_change,
+                    "%"
+                ]
+            }),
+            /*#__PURE__*/ (0,jsx_runtime_.jsxs)("p", {
+                children: [
+                    "Volume: $",
+                    crypto.volume.usd
+                ]
+            })
+        ]
+    });
+};
+// Component for Price Chart
+const PriceChart = ({ chartData  })=>{
+    if (!chartData) return null;
+    const data = {
+        labels: chartData.prices.map((point)=>new Date(point[0]).toLocaleDateString()),
+        datasets: [
+            {
+                label: "Price",
+                data: chartData.prices.map((point)=>point[1]),
+                borderColor: "rgb(75,192,192)",
+                backgroundColor: "rgba(75,192,192,0.2)",
+                fill: true
+            }
+        ]
+    };
+    const options = {
+        responsive: true,
+        plugins: {
+            legend: {
+                display: true
+            }
+        }
+    };
+    return /*#__PURE__*/ jsx_runtime_.jsx("div", {
+        style: styles.chartContainer,
+        children: /*#__PURE__*/ jsx_runtime_.jsx(external_react_chartjs_2_namespaceObject.Line, {
+            data: data,
+            options: options
+        })
+    });
+};
+function Home() {
+    const { 0: crypto , 1: setCrypto  } = (0,external_react_.useState)(null);
+    const { 0: chartData , 1: setChartData  } = (0,external_react_.useState)(null);
+    const { 0: isDarkMode , 1: setIsDarkMode  } = (0,external_react_.useState)(false);
+    // Toggle dark mode on client-side only
+    (0,external_react_.useEffect)(()=>{
+        document.body.classList.toggle("dark-mode", isDarkMode);
+    }, [
+        isDarkMode
+    ]);
+    // Handle search and fetch data
+    const handleSearch = async (query)=>{
+        try {
+            // Fetch price data
+            const priceResponse = await external_axios_default().get("https://api.coingecko.com/api/v3/simple/price", {
+                params: {
+                    ids: query,
+                    vs_currencies: "usd",
+                    include_market_cap: "true",
+                    include_24hr_vol: "true",
+                    include_24hr_change: "true"
+                }
+            });
+            // Check if the cryptocurrency exists
+            if (!priceResponse.data[query]) {
+                setCrypto(null);
+                setChartData(null);
+                alert("Cryptocurrency not found. Please try a different search term.");
+                return;
+            }
+            // Fetch chart data
+            const chartResponse = await external_axios_default().get(`https://api.coingecko.com/api/v3/coins/${query}/market_chart`, {
+                params: {
+                    vs_currency: "usd",
+                    days: "7"
+                }
+            });
+            // Update state with fetched data
+            setCrypto({
+                name: query,
+                symbol: query,
+                price: priceResponse.data[query],
+                market_cap: priceResponse.data[query],
+                volume: priceResponse.data[query]
+            });
+            setChartData(chartResponse.data);
+        } catch (error) {
+            console.error("Error fetching data:", error.response ? error.response.data : error.message);
+            setCrypto(null);
+            setChartData(null);
+            alert("Error fetching data. Please try again later.");
+        }
+    };
+    return /*#__PURE__*/ (0,jsx_runtime_.jsxs)("div", {
+        style: styles.container(isDarkMode),
+        children: [
+            /*#__PURE__*/ jsx_runtime_.jsx(DarkModeToggle, {
+                isDarkMode: isDarkMode,
+                toggleDarkMode: ()=>setIsDarkMode(!isDarkMode)
+            }),
+            /*#__PURE__*/ jsx_runtime_.jsx(SearchBar, {
+                onSearch: handleSearch
+            }),
+            /*#__PURE__*/ jsx_runtime_.jsx(CryptoCard, {
+                crypto: crypto
+            }),
+            /*#__PURE__*/ jsx_runtime_.jsx(PriceChart, {
+                chartData: chartData
+            })
+        ]
+    });
+}
+
 
 /***/ }),
 
-/***/ "./node_modules/tailwindcss/tailwind.css":
-/*!***********************************************!*\
-  !*** ./node_modules/tailwindcss/tailwind.css ***!
-  \***********************************************/
-/***/ (() => {
-
-
-
-/***/ }),
-
-/***/ "axios":
-/*!************************!*\
-  !*** external "axios" ***!
-  \************************/
+/***/ 689:
 /***/ ((module) => {
 
-"use strict";
-module.exports = require("axios");
-
-/***/ }),
-
-/***/ "react":
-/*!************************!*\
-  !*** external "react" ***!
-  \************************/
-/***/ ((module) => {
-
-"use strict";
 module.exports = require("react");
 
 /***/ }),
 
-/***/ "react/jsx-dev-runtime":
-/*!****************************************!*\
-  !*** external "react/jsx-dev-runtime" ***!
-  \****************************************/
+/***/ 997:
 /***/ ((module) => {
 
-"use strict";
-module.exports = require("react/jsx-dev-runtime");
-
-/***/ }),
-
-/***/ "chart.js":
-/*!***************************!*\
-  !*** external "chart.js" ***!
-  \***************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = import("chart.js");;
-
-/***/ }),
-
-/***/ "react-chartjs-2":
-/*!**********************************!*\
-  !*** external "react-chartjs-2" ***!
-  \**********************************/
-/***/ ((module) => {
-
-"use strict";
-module.exports = import("react-chartjs-2");;
+module.exports = require("react/jsx-runtime");
 
 /***/ })
 
@@ -95,7 +293,7 @@ module.exports = import("react-chartjs-2");;
 var __webpack_require__ = require("../webpack-runtime.js");
 __webpack_require__.C(exports);
 var __webpack_exec__ = (moduleId) => (__webpack_require__(__webpack_require__.s = moduleId))
-var __webpack_exports__ = (__webpack_exec__("./pages/index.js"));
+var __webpack_exports__ = (__webpack_exec__(223));
 module.exports = __webpack_exports__;
 
 })();
