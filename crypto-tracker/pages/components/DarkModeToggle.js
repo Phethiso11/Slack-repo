@@ -1,4 +1,3 @@
-// components/DarkModeToggle.js
 
 import { useState } from 'react';
 
