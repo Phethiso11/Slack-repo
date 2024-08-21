@@ -2,62 +2,23 @@ import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, Title } from 'chart.js';
+import 'tailwindcss/tailwind.css';
 
 // Register ChartJS components
 ChartJS.register(LineElement, CategoryScale, LinearScale, Title);
 
-// Inline styles for the components
-const styles = {
-    container: {
-        fontFamily: 'Arial, sans-serif',
-        transition: 'background-color 0.3s, color 0.3s',
-    },
-    darkMode: {
-        backgroundColor: '#121212',
-        color: '#ffffff',
-    },
-    lightMode: {
-        backgroundColor: '#ffffff',
-        color: '#000000',
-    },
-    button: {
-        padding: '10px 20px',
-        fontSize: '16px',
-        cursor: 'pointer',
-        border: 'none',
-        borderRadius: '4px',
-        margin: '10px',
-    },
-    input: {
-        padding: '10px',
-        fontSize: '16px',
-        borderRadius: '4px',
-        border: '1px solid #ccc',
-    },
-    cryptoCard: {
-        padding: '20px',
-        borderRadius: '4px',
-        border: '1px solid #ccc',
-        margin: '10px',
-    },
-    chart: {
-        width: '100%',
-        maxWidth: '600px',
-        margin: '20px auto',
-    },
-};
-
-// Component to toggle dark mode
+// Tailwind CSS-based components
 const DarkModeToggle = ({ isDarkMode, toggleDarkMode }) => (
     <button
-        style={styles.button}
+        className={`px-4 py-2 text-lg rounded-md transition-colors duration-300 ${
+            isDarkMode ? 'bg-gray-800 text-white' : 'bg-gray-200 text-gray-800'
+        }`}
         onClick={toggleDarkMode}
     >
         {isDarkMode ? 'Light Mode' : 'Dark Mode'}
     </button>
 );
 
-// Component for search functionality
 const SearchBar = ({ onSearch }) => {
     const [query, setQuery] = useState('');
 
@@ -66,17 +27,17 @@ const SearchBar = ({ onSearch }) => {
     };
 
     return (
-        <div>
+        <div className="flex items-center space-x-2 mb-4">
             <input
                 type="text"
                 placeholder="Search cryptocurrency..."
                 value={query}
                 onChange={(e) => setQuery(e.target.value)}
-                style={styles.input}
+                className="p-2 border rounded-md border-gray-300 focus:outline-none focus:ring-2 focus:ring-indigo-500"
             />
             <button
                 onClick={handleSearch}
-                style={styles.button}
+                className="px-4 py-2 bg-blue-500 text-white rounded-md hover:bg-blue-600 transition-colors"
             >
                 Search
             </button>
@@ -84,14 +45,13 @@ const SearchBar = ({ onSearch }) => {
     );
 };
 
-// Component to display cryptocurrency information
 const CryptoCard = ({ crypto }) => {
     if (!crypto) return null;
 
     return (
-        <div>
-            <h2>{crypto.name} ({crypto.symbol.toUpperCase()})</h2>
-            <p>Price: ${crypto.price.usd}</p>
+        <div className="p-4 border rounded-md border-gray-300 mb-4">
+            <h2 className="text-xl font-semibold">{crypto.name} ({crypto.symbol.toUpperCase()})</h2>
+            <p className="mt-2">Price: ${crypto.price.usd}</p>
             <p>Market Cap: ${crypto.market_cap.usd}</p>
             <p>24h Change: {crypto.price.usd_24h_change}%</p>
             <p>Volume: ${crypto.volume.usd}</p>
@@ -99,7 +59,6 @@ const CryptoCard = ({ crypto }) => {
     );
 };
 
-// Component to display price chart
 const PriceChart = ({ chartData }) => {
     if (!chartData) return null;
 
@@ -108,24 +67,26 @@ const PriceChart = ({ chartData }) => {
         datasets: [{
             label: 'Price',
             data: chartData.prices.map(point => point[1]),
-            borderColor: 'rgba(75,192,192,1)',
+            borderColor: 'rgb(75,192,192)',
             backgroundColor: 'rgba(75,192,192,0.2)',
             fill: true,
         }],
     };
 
-    return <div style={styles.chart}><Line data={data} /></div>;
+    return (
+        <div className="w-full max-w-4xl mx-auto">
+            <Line data={data} options={{ responsive: true, plugins: { legend: { display: true } } }} />
+        </div>
+    );
 };
 
-// Main page component
 export default function Home({ price, chart }) {
     const [crypto, setCrypto] = useState(null);
     const [chartData, setChartData] = useState(null);
     const [isDarkMode, setIsDarkMode] = useState(false);
 
     useEffect(() => {
-        document.body.style.backgroundColor = isDarkMode ? '#121212' : '#ffffff';
-        document.body.style.color = isDarkMode ? '#ffffff' : '#000000';
+        document.body.className = isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900';
     }, [isDarkMode]);
 
     useEffect(() => {
@@ -159,7 +120,7 @@ export default function Home({ price, chart }) {
     };
 
     return (
-        <div style={isDarkMode ? styles.darkMode : styles.lightMode}>
+        <div className={`min-h-screen flex flex-col items-center p-4 ${isDarkMode ? 'bg-gray-900 text-white' : 'bg-white text-gray-900'}`}>
             <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
             <SearchBar onSearch={handleSearch} />
             <CryptoCard crypto={crypto} />
@@ -168,13 +129,12 @@ export default function Home({ price, chart }) {
     );
 }
 
-// Fetch data server-side
 export async function getServerSideProps(context) {
     const { query } = context;
     const { ids = 'bitcoin', vs_currencies = 'usd', days = '7' } = query;
 
     try {
-        const priceResponse = await axios.get(`https://api.coingecko.com/api/v3/simple/price`, {
+        const priceResponse = await axios.get('https://api.coingecko.com/api/v3/simple/price', {
             params: {
                 ids,
                 vs_currencies,
