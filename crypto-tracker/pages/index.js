@@ -3,10 +3,8 @@ import axios from 'axios';
 import { Line } from 'react-chartjs-2';
 import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, Title, PointElement } from 'chart.js';
 
-// Register Chart.js components
 ChartJS.register(LineElement, CategoryScale, LinearScale, Title, PointElement);
 
-// Inline CSS styles
 const styles = {
     container: (isDarkMode) => ({
         minHeight: '100vh',
@@ -57,22 +55,25 @@ const styles = {
         maxWidth: '800px',
         margin: '0 auto',
     },
+    homeButton: (isDarkMode) => ({
+        ...styles.button(isDarkMode),
+        position: 'absolute',
+        top: '16px',
+        left: '16px',
+    }),
 };
 
-// Component for Dark Mode Toggle
 const DarkModeToggle = ({ isDarkMode, toggleDarkMode }) => {
     return (
         <button
             style={styles.button(isDarkMode)}
             onClick={toggleDarkMode}
         >
-            {isDarkMode ? '🔆Light Mode' : '🌙Dark Mode'}
+            {isDarkMode ? '🔆 Light Mode' : '🌙 Dark Mode'}
         </button>
     );
 };
 
-
-// Component for Search Bar
 const SearchBar = ({ onSearch }) => {
     const [query, setQuery] = useState('');
 
@@ -101,27 +102,26 @@ const SearchBar = ({ onSearch }) => {
     );
 };
 
-
-
-// Component for Crypto Card
 const CryptoCard = ({ crypto }) => {
     if (!crypto) return null;
+
+    const price = crypto.price?.usd?.toFixed(2) || 'N/A';
+    const marketCap = crypto.market_cap?.usd?.toLocaleString() || 'N/A';
+    const volume = crypto.volume?.usd?.toLocaleString() || 'N/A';
+    const priceChange = crypto.price?.usd_24h_change?.toFixed(2) || 'N/A';
 
     return (
         <div style={styles.cryptoCard}>
             <h2 className="text-xl font-semibold">{crypto.name} ({crypto.symbol.toUpperCase()})</h2>
-            <p className="mt-2">Price: ${crypto.price.usd}</p>
-            <p>Market Cap: ${crypto.market_cap.usd}</p>
-            <p>24h Change: {crypto.price.usd_24h_change}%</p>
-            <p>Volume: ${crypto.volume.usd}</p>
+            <p className="mt-2">Price: ${price}</p>
+            <p>Market Cap: ${marketCap}</p>
+            <p>24h Change: {priceChange}%</p>
+            <p>Volume: ${volume}</p>
         </div>
-
     );
 };
 
 
-
-// Component for Price Chart
 const PriceChart = ({ chartData }) => {
     if (!chartData) return null;
 
@@ -152,20 +152,102 @@ const PriceChart = ({ chartData }) => {
     );
 };
 
+const PopularCryptos = ({ onSelect }) => {
+    const [popularCryptos, setPopularCryptos] = useState([]);
+
+    useEffect(() => {
+        const fetchPopularCryptos = async () => {
+            try {
+                const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
+                    params: {
+                        vs_currency: 'usd',
+                        order: 'market_cap_desc',
+                        per_page: 10,
+                        page: 1,
+                    },
+                });
+                setPopularCryptos(response.data);
+            } catch (error) {
+                console.error('Error fetching popular cryptocurrencies:', error.message);
+            }
+        };
+
+        fetchPopularCryptos();
+    }, []);
+
+    return (
+        <div className="grid grid-cols-1 gap-4">
+            {popularCryptos.map(crypto => (
+                <div
+                    key={crypto.id}
+                    style={styles.cryptoCard}
+                    onClick={() => onSelect(crypto.id)}
+                >
+                    <h2>{crypto.name} ({crypto.symbol.toUpperCase()})</h2>
+                    <p>Price: ${crypto.current_price.toFixed(2)}</p>
+                </div>
+            ))}
+        </div>
+    );
+};
+
 export default function Home() {
     const [crypto, setCrypto] = useState(null);
     const [chartData, setChartData] = useState(null);
     const [isDarkMode, setIsDarkMode] = useState(false);
+    const [showHome, setShowHome] = useState(true);
+    const [popularCryptos, setPopularCryptos] = useState([]);
 
-    // Toggle dark mode on client-side only
     useEffect(() => {
         document.body.classList.toggle('dark-mode', isDarkMode);
     }, [isDarkMode]);
 
-    // Handle search and fetch data
+    useEffect(() => {
+        const fetchPopularCryptos = async () => {
+            try {
+                const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
+                    params: {
+                        vs_currency: 'usd',
+                        order: 'market_cap_desc',
+                        per_page: 10,
+                        page: 1,
+                    },
+                });
+                setPopularCryptos(response.data);
+            } catch (error) {
+                console.error('Error fetching popular cryptocurrencies:', error.message);
+            }
+        };
+
+        fetchPopularCryptos();
+    }, []);
+
     const handleSearch = async (query) => {
         try {
-            // Fetch price data
+            // Check if the query matches a popular cryptocurrency
+            const matchedCrypto = popularCryptos.find(crypto => crypto.id === query);
+            if (matchedCrypto) {
+                setCrypto({
+                    name: matchedCrypto.name,
+                    symbol: matchedCrypto.symbol,
+                    price: { usd: matchedCrypto.current_price },
+                    market_cap: { usd: matchedCrypto.market_cap },
+                    volume: { usd: matchedCrypto.total_volume },
+                    price_change_percentage_24h: matchedCrypto.price_change_percentage_24h,
+                });
+
+                const chartResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/${query}/market_chart`, {
+                    params: {
+                        vs_currency: 'usd',
+                        days: '7',
+                    },
+                });
+
+                setChartData(chartResponse.data);
+                setShowHome(false);
+                return;
+            }
+
             const priceResponse = await axios.get('https://api.coingecko.com/api/v3/simple/price', {
                 params: {
                     ids: query,
@@ -176,7 +258,6 @@ export default function Home() {
                 },
             });
 
-            // Check if the cryptocurrency exists
             if (!priceResponse.data[query]) {
                 setCrypto(null);
                 setChartData(null);
@@ -184,7 +265,6 @@ export default function Home() {
                 return;
             }
 
-            // Fetch chart data
             const chartResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/${query}/market_chart`, {
                 params: {
                     vs_currency: 'usd',
@@ -192,7 +272,6 @@ export default function Home() {
                 },
             });
 
-            // Update state with fetched data
             setCrypto({
                 name: query,
                 symbol: query,
@@ -201,6 +280,7 @@ export default function Home() {
                 volume: priceResponse.data[query],
             });
             setChartData(chartResponse.data);
+            setShowHome(false);
         } catch (error) {
             console.error('Error fetching data:', error.response ? error.response.data : error.message);
             setCrypto(null);
@@ -209,12 +289,32 @@ export default function Home() {
         }
     };
 
+    const handleHome = () => {
+        setCrypto(null);
+        setChartData(null);
+        setShowHome(true);
+    };
+
     return (
         <div style={styles.container(isDarkMode)}>
             <DarkModeToggle isDarkMode={isDarkMode} toggleDarkMode={() => setIsDarkMode(!isDarkMode)} />
-            <SearchBar onSearch={handleSearch} />
-            <CryptoCard crypto={crypto} />
-            <PriceChart chartData={chartData} />
+            {!showHome && (
+                <button
+                    style={styles.homeButton(isDarkMode)}
+                    onClick={handleHome}
+                >
+                    Home
+                </button>
+            )}
+            {showHome ? (
+                <PopularCryptos onSelect={handleSearch} />
+            ) : (
+                <>
+                    <SearchBar onSearch={handleSearch} />
+                    <CryptoCard crypto={crypto} />
+                    <PriceChart chartData={chartData} />
+                </>
+            )}
         </div>
     );
 }
