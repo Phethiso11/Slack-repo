@@ -5,7 +5,16 @@ import { Chart as ChartJS, LineElement, CategoryScale, LinearScale, Title, Point
 
 // Register Chart.js components
 ChartJS.register(LineElement, CategoryScale, LinearScale, Title, PointElement);
-
+const router = createBrowserRouter([
+{
+    path: "/",
+    element: Home(),
+},
+{
+    path: '/test',
+    element: Test(),
+}
+]);
 // Inline CSS styles
 const styles = {
     container: (isDarkMode) => ({
