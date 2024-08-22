@@ -101,6 +101,8 @@ const SearchBar = ({ onSearch }) => {
     );
 };
 
+
+
 // Component for Crypto Card
 const CryptoCard = ({ crypto }) => {
     if (!crypto) return null;
