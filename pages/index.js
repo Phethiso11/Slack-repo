@@ -121,7 +121,6 @@ const CryptoCard = ({ crypto }) => {
     );
 };
 
-
 const PriceChart = ({ chartData }) => {
     if (!chartData) return null;
 
@@ -158,7 +157,7 @@ const PopularCryptos = ({ onSelect }) => {
     useEffect(() => {
         const fetchPopularCryptos = async () => {
             try {
-                const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
+                const response = await axios.get('http://localhost:5001/api/coins/markets', {
                     params: {
                         vs_currency: 'usd',
                         order: 'market_cap_desc',
@@ -196,59 +195,14 @@ export default function Home() {
     const [chartData, setChartData] = useState(null);
     const [isDarkMode, setIsDarkMode] = useState(false);
     const [showHome, setShowHome] = useState(true);
-    const [popularCryptos, setPopularCryptos] = useState([]);
 
     useEffect(() => {
         document.body.classList.toggle('dark-mode', isDarkMode);
     }, [isDarkMode]);
 
-    useEffect(() => {
-        const fetchPopularCryptos = async () => {
-            try {
-                const response = await axios.get('https://api.coingecko.com/api/v3/coins/markets', {
-                    params: {
-                        vs_currency: 'usd',
-                        order: 'market_cap_desc',
-                        per_page: 10,
-                        page: 1,
-                    },
-                });
-                setPopularCryptos(response.data);
-            } catch (error) {
-                console.error('Error fetching popular cryptocurrencies:', error.message);
-            }
-        };
-
-        fetchPopularCryptos();
-    }, []);
-
     const handleSearch = async (query) => {
         try {
-            // Check if the query matches a popular cryptocurrency
-            const matchedCrypto = popularCryptos.find(crypto => crypto.id === query);
-            if (matchedCrypto) {
-                setCrypto({
-                    name: matchedCrypto.name,
-                    symbol: matchedCrypto.symbol,
-                    price: { usd: matchedCrypto.current_price },
-                    market_cap: { usd: matchedCrypto.market_cap },
-                    volume: { usd: matchedCrypto.total_volume },
-                    price_change_percentage_24h: matchedCrypto.price_change_percentage_24h,
-                });
-
-                const chartResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/${query}/market_chart`, {
-                    params: {
-                        vs_currency: 'usd',
-                        days: '7',
-                    },
-                });
-
-                setChartData(chartResponse.data);
-                setShowHome(false);
-                return;
-            }
-
-            const priceResponse = await axios.get('https://api.coingecko.com/api/v3/simple/price', {
+            const response = await axios.get('http://localhost:5001/api/simple/price', {
                 params: {
                     ids: query,
                     vs_currencies: 'usd',
@@ -258,26 +212,29 @@ export default function Home() {
                 },
             });
 
-            if (!priceResponse.data[query]) {
+            if (!response.data[query]) {
                 setCrypto(null);
                 setChartData(null);
                 alert('Cryptocurrency not found. Please try a different search term.');
                 return;
             }
 
-            const chartResponse = await axios.get(`https://api.coingecko.com/api/v3/coins/${query}/market_chart`, {
+            const chartResponse = await axios.get(`http://localhost:5001/api/coins/dogecoin/market_chart`, {
                 params: {
                     vs_currency: 'usd',
                     days: '7',
                 },
             });
+            
+
+            
 
             setCrypto({
                 name: query,
                 symbol: query,
-                price: priceResponse.data[query],
-                market_cap: priceResponse.data[query],
-                volume: priceResponse.data[query],
+                price: response.data[query],
+                market_cap: response.data[query],
+                volume: response.data[query],
             });
             setChartData(chartResponse.data);
             setShowHome(false);
