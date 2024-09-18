@@ -16,7 +16,7 @@
       }
     ],
     "env": {
-      "REACT_APP_API_URL": "https://api.coingecko.com/api/v3"
+      "REACT_APP_API_URL": "https://api.coingecko.com/api/"
     }
   }
   
