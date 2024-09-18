@@ -11,7 +11,7 @@
     ],
     "routes": [
       {
-        "pages": "/(.*)",
+        "src": "/(.*)",
         "dest": "/index.js"
       }
     ],
